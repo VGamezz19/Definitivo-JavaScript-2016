@@ -15,7 +15,7 @@ page('/', (ctx,next) => {
       },
       url: 'office.jpg',
       likes : 10,
-      liked : true
+      liked : false
     },
     {
       user: {
@@ -24,7 +24,7 @@ page('/', (ctx,next) => {
       },
       url: 'office.jpg',
       likes : 3,
-      liked : true
+      liked : false
     }
   ]
 

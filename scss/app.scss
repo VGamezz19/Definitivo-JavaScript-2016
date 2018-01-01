@@ -106,3 +106,17 @@ body {
   .card .fa-heart-o {
     color: $secondary-color;
   }
+
+  .card .fa-heart{
+    color: red;
+    display: none
+  }
+
+  .card.liked {
+    .fa-heart {
+      display: block !important
+    }
+    .fa-heart-o {
+      display:none !important
+    }
+  } 
