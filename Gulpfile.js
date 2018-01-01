@@ -9,7 +9,7 @@ const   gulp = require('gulp'),
 
     gulp.task('styles',  () =>{
         gulp
-            .src('./scss/*.scss')
+            .src('./scss/app.scss')
             .pipe(sass())
             .pipe(rename('app.css'))
             .pipe(gulp.dest('public'))
