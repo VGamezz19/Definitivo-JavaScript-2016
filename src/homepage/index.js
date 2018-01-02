@@ -15,7 +15,8 @@ page('/', (ctx,next) => {
       },
       url: 'office.jpg',
       likes : 10,
-      liked : false
+      liked : false,
+      createdAt : new Date()
     },
     {
       user: {
@@ -24,7 +25,8 @@ page('/', (ctx,next) => {
       },
       url: 'office.jpg',
       likes : 3,
-      liked : false
+      liked : false,
+      createdAt : new Date().setDate(new Date().getDate() - 10)
     }
   ]
 

@@ -11,7 +11,7 @@ module.exports = function layout (content){
                 <a href="" class ='brand-logo platzigram'>Platzigram</a>
                 </div>
                 <div class="col s2 push-s10 m6 push-m10">
-                    <a href="#" class="btn btn-large btn-flat dropdown-button" data-activates = 'drop-user'>
+                    <a href="#" class="btn btn-large btn-flat user-drop-down dropdown-button" data-activates = 'drop-user'>
                         <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                 <ul id ='drop-user' class="dropdown-content">
