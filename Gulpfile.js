@@ -42,7 +42,14 @@ const   gulp = require('gulp'),
         let bundle = watchify(browserify('./src/index.js')),
             rebundle = ()=> {
                 bundle
-                    .transform(babel, {presets: ['env']})
+                    .transform(babel, {
+                        "presets": [
+                          ["env"]
+                        ],
+                        "plugins": [
+                          ["regenerator-transform", "transform-runtime"]
+                        ]
+                      })
                     .bundle()
                     .pipe(source('index.js'))
                     .pipe(rename('app.js'))
