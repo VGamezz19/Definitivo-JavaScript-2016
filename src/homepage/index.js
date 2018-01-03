@@ -14,7 +14,7 @@ page('/', (ctx,next) => {
         avatar : "https://avatars2.githubusercontent.com/u/14943217?s=400&u=c59048e8a270e05e1e01b2c7244e200257656071&v=4"
       },
       url: 'office.jpg',
-      likes : 10,
+      likes : 0,
       liked : false,
       createdAt : new Date()
     },
@@ -24,7 +24,7 @@ page('/', (ctx,next) => {
         avatar : "https://avatars2.githubusercontent.com/u/14943217?s=400&u=c59048e8a270e05e1e01b2c7244e200257656071&v=4"
       },
       url: 'office.jpg',
-      likes : 3,
+      likes : 1,
       liked : false,
       createdAt : new Date().setDate(new Date().getDate() - 10)
     }
