@@ -20,7 +20,7 @@ var MESSAGES = {};
 MESSAGES.es = es;
 MESSAGES['en-US'] = en; //Lo ponemos en ['en-US] porque es mala praxis poner MESSAGES.en-US --> -
 
-let locale = 'en-US'
+let locale =  localStorage.locale ||'es'
 
 module.exports = {
     message : (text, opts = {}) => { //opts = {} es como decirle, que si no le llega nada, sera un objeto vacio
@@ -29,4 +29,3 @@ module.exports = {
     },
     date : new IntlRelativeFormat(locale)
 }
-

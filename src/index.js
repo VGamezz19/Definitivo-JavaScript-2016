@@ -9,5 +9,6 @@ require('./homepage')
 require('./signup')
 require('./signin')
 require('./landing')
+require('./footer')
 
 page()
