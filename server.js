@@ -9,14 +9,45 @@ app.set('view engine', 'pug')
 //Va a ser algo virtual.
 app.use(express.static('public'))
 
+// const restrict = (req, res, next) => {
+//     if(req.user) return next() //se jecuta el proximo midelware
+//     res.redirect('/signup')
+// }                               //restrict, (req, res)
 app.get(['/', '/signup', '/signin'], (req,res) => { 
-    
     (req.url) ==='/' ? res.render('index', {title : 'Platzigram'}) : 
     (req.url) === '/signup'? res.render('index', {title : 'Platzigram - Signup'}) :  
     res.render('index', {title : 'Platzigram - Sigin'})
     //Tambien podemos hacer app.get('*')
     // Coje todas las rutas de las paginas
-     
+})
+
+app.get('/api/pictures',(req,res) => {
+    let pictures = [ 
+        {
+          user: {
+            username: "vgamez",
+            avatar : "https://avatars2.githubusercontent.com/u/14943217?s=400&u=c59048e8a270e05e1e01b2c7244e200257656071&v=4"
+          },
+          url: 'office.jpg',
+          likes : 0,
+          liked : false,
+          createdAt : new Date().getTime()
+        },
+        {
+          user: {
+            username: "vgamez",
+            avatar : "https://avatars2.githubusercontent.com/u/14943217?s=400&u=c59048e8a270e05e1e01b2c7244e200257656071&v=4"
+          },
+          url: 'office.jpg',
+          likes : 1,
+          liked : false,
+          createdAt : new Date().setDate(new Date().getDate() - 10)
+        }
+      ]
+    setTimeout(()=>{
+        res.send(pictures)
+    },2000)  
+    
 })
 
 app.listen(5000, (err)=>{ 

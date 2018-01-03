@@ -2,33 +2,24 @@ const   page = require('page')
 const   yo = require('yo-yo')
 const   empty = require('empty-element')
 const   template = require('./template')
+const   request = require('superagent')
+const header = require('../header')
 
-page('/', (ctx,next) => {
+const loadPictures = (ctx, next) => { //en page siempre recive, context, y next
+  request
+      .get('/api/pictures')
+      .end( (err,res) => {
+        if(err) return console.log(err)
+        ctx.pictures = res.body
+
+        next() //para pasar a la proxima funcion de PAGE 
+      })
+}
+
+page('/', header, loadPictures, (ctx,next) => {
   document.title='Platzigram'
+
   let main = document.getElementById('main-container')
 
-  var picture = [ 
-    {
-      user: {
-        username: "vgamez",
-        avatar : "https://avatars2.githubusercontent.com/u/14943217?s=400&u=c59048e8a270e05e1e01b2c7244e200257656071&v=4"
-      },
-      url: 'office.jpg',
-      likes : 0,
-      liked : false,
-      createdAt : new Date()
-    },
-    {
-      user: {
-        username: "vgamez",
-        avatar : "https://avatars2.githubusercontent.com/u/14943217?s=400&u=c59048e8a270e05e1e01b2c7244e200257656071&v=4"
-      },
-      url: 'office.jpg',
-      likes : 1,
-      liked : false,
-      createdAt : new Date().setDate(new Date().getDate() - 10)
-    }
-  ]
-
-  empty(main).appendChild(template(picture))
+  empty(main).appendChild(template(ctx.pictures))
 })
