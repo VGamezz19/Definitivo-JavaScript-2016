@@ -8,7 +8,7 @@ let el = yo`
         <div class="container">
         <div class="row">
             <div class="col s12 m6 offset-m1">
-            <a href="" class ='brand-logo platzigram'>Platzigram</a>
+            <a href="/" class ='brand-logo platzigram'>Platzigram</a>
             </div>
             <div class="col s2 push-s10 m6 push-m10">
                 <a href="#" class="btn btn-large btn-flat user-drop-down dropdown-button" data-activates = 'drop-user'>
