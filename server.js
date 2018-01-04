@@ -1,5 +1,18 @@
 const   express = require('express'),
-        app = express();
+        app = express(),
+        multer  = require('multer'),
+        ext = require('file-extension')
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, +Date.now() + '.' + ext(file.originalname))
+  }
+})
+
+var upload = multer({ storage: storage }).single('picture')
 
         //Le decimos que utilizara PUG para renderizar
 app.set('view engine', 'pug')
@@ -48,6 +61,14 @@ app.get('/api/pictures',(req,res) => {
         res.send(pictures)
     },2000)  
     
+})
+
+app.post('/api/pictures', (req,res) => {
+  upload(req,res,(err => {
+    if (err) return res.send(500, "Error uploading File")
+
+    res.send("File Updatet Nice")
+  }))
 })
 
 app.listen(5000, (err)=>{ 

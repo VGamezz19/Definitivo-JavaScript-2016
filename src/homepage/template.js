@@ -2,12 +2,13 @@ const yo = require('yo-yo');
 const layout = require('../layout')
 let picture = require('../picture-card')
 const translate = require('../translate').message
+const request = require ('superagent')
 module.exports = function(pictures) {
     let le =  yo `
         <div class = 'container timeline'>
             <div class="row">
                 <div class="col s12 m10 offset-1 l8 offset-l2 center-align">
-                    <form enctype="multipart/form-data" action="" id='formUpload' class ='form-upload'>
+                    <form enctype="multipart/form-data" id='formUpload' class ='form-upload' onsubmit=${onsubmit}>
                         <div id ='fileName' class ='fileUpload waves-effect waves-light btn cyan'>
                             <span> 
                                 <i class="fa fa-camera" aria-hidden="true"></i>
@@ -32,17 +33,32 @@ module.exports = function(pictures) {
                 </div>
             </div>
         </div>`
+
     function toggleButtons() {
         document.getElementById('fileName').classList.toggle('hide')
         document.getElementById('btnUpload').classList.toggle('hide')
         document.getElementById('btnCancel').classList.toggle('hide')
     }
+
     function cancel(){
         toggleButtons()
         document.getElementById('formUpload').reset() //Resetea el FORMULARIO
     }
+
     function onchange(){
         toggleButtons()
+    }
+
+    function onsubmit(ev) {
+        ev.preventDefault() //No se ara ese request del FORM
+
+        var data = new FormData(this) //Este this son los datos del FORM
+        request
+            .post('/api/pictures')
+            .send(data)
+            .end((err,res) => {
+                console.log(arguments)
+            })
     }
 
     
