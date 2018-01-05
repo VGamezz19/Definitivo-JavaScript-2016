@@ -43,8 +43,12 @@ app.set('view engine', 'pug')
 //Un nuevo Point, indicandole al servidor Web
 //Que se sirva este directorio PUBLIC de manera estatica
 //Va a ser algo virtual.
-app.use(express.static('public'))
 
+app.use(express.static('public'))
+//Especificamos que en la rusa '/user/:user' va a tener su propia raiz de public
+app.use('/user/:user', express.static('public'));
+
+// ======== MIDELLWARE =============
 // const restrict = (req, res, next) => {
 //     if(req.user) return next() //se jecuta el proximo midelware
 //     res.redirect('/signup')
@@ -61,9 +65,7 @@ app.get(['/', '/signup', '/signin','/user/:user'], (req,res) => {
 })
 
 app.get('/api/pictures',(req,res) => {
-    setTimeout(()=>{
-        res.send(pictures)
-    },2000)   
+  res.send(pictures)  
 })
 
 app.get(`/api/user/:user`,(req,res)=> {
