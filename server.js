@@ -50,10 +50,11 @@ app.use(express.static('public'))
 //     res.redirect('/signup')
 // }                               //restrict, (req, res)
 app.get(['/', '/signup', '/signin','/user/:user'], (req,res) => { 
-    (req.url) ==='/' ? res.render('index', {title : 'Platzigram'}) : 
-    (req.url) === '/signup'? res.render('index', {title : 'Platzigram - Signup'}) :
-    (req.url) === '/signup' ? res.render('index', {title : 'Platzigram - Sigin'}) :
-    (req.url) === '/user/vgamez' ? res.render('index', {title: `Platzigram - ${req.params.user}`}) : console.log("")
+    
+  if (req.url === '/signup') return res.render('index', {title : 'Platzigram - Signup'})
+  if (req.url === '/signup') return res.render('index', {title : 'Platzigram - Sigin'})
+  
+  return res.render('index', {title : 'Platzigram'}) 
     
     //Tambien podemos hacer app.get('*')
     // Coje todas las rutas de las paginas
